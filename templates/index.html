@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .container {
+            width: 50%;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Predictor</h1>
+        <h2>Enter the car details:</h2>
+        <form id="measurement-form" action="{{ url_for('predict') }}" method="post">
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year" required><br><br>
+            <label for="km">Km:</label>
+            <input type="text" id="km" name="km" required><br><br>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required><br><br>
+            <label for="hand">Hand:</label>
+            <input type="text" id="hand" name="hand" required><br><br>
+            <label for="manufactor">Manufactor:</label>
+            <input type="text" id="manufactor" name="manufactor" required><br><br>
+            <label for="gear">Gear:</label>
+            <input type="text" id="gear" name="gear" required><br><br>
+            <label for="engine_type">Engine Type:</label>
+            <input type="text" id="engine_type" name="engine_type" required><br><br>
+            <label for="curr_ownership">Current Ownership:</label>
+            <input type="text" id="curr_ownership" name="curr_ownership" required><br><br>
+            <label for="capacity_engine">Capacity Engine:</label>
+            <input type="text" id="capacity_engine" name="capacity_engine" required><br><br>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required><br><br>
+            <button type="submit" class="btn btn-primary px-5">Evaluate Price</button>    
+        </form>
+        <h3 class="result">{{ prediction_text }}</h3>
+    </div>
+</body>
+</html>
+
+
