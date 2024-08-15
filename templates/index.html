@@ -56,30 +56,91 @@
         <h2>Enter the car details:</h2>
         <form id="measurement-form" action="{{ url_for('predict') }}" method="post">
             <label for="year">Year:</label>
-            <input type="text" id="year" name="year" required><br><br>
+            <input type="number" id="year" name="year" min="1980" max="2024" required><br><br>
+
             <label for="km">Km:</label>
-            <input type="text" id="km" name="km" required><br><br>
+            <input type="number" id="km" name="km" min="0" max="100000" required><br><br>
+
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br><br>
+
             <label for="hand">Hand:</label>
-            <input type="text" id="hand" name="hand" required><br><br>
+            <input type="number" id="hand" name="hand" min="0" required><br><br>
+
             <label for="manufactor">Manufactor:</label>
-            <input type="text" id="manufactor" name="manufactor" required><br><br>
+            <select id="manufactor" name="manufactor" required>
+                <option value="אאודי">אאודי</option>
+                <option value="אופל">אופל</option>
+                <option value="אלפא רומיאו">אלפא רומיאו</option>
+                <option value="ב.מ.וו">ב.מ.וו</option>
+                <option value="דייהטסו">דייהטסו</option>
+                <option value="הונדה">הונדה</option>
+                <option value="וולוו">וולוו</option>
+                <option value="טויוטה">טויוטה</option>
+                <option value="טסלה">טסלה</option>
+                <option value="יגואר">יגואר</option>
+                <option value="יונדאי">יונדאי</option>
+                <option value="לקסוס">לקסוס</option>
+                <option value="מאזדה">מאזדה</option>
+                <option value="מיני">מיני</option>
+                <option value="מיצובישי">מיצובישי</option>
+                <option value="מרצדס">מרצדס</option>
+                <option value="ניסאן">ניסאן</option>
+                <option value="סובארו">סובארו</option>
+                <option value="סוזוקי">סוזוקי</option>
+                <option value="סיאט">סיאט</option>
+                <option value="סיטרואן">סיטרואן</option>
+                <option value="סקודה">סקודה</option>
+                <option value="פולקסווגן">פולקסווגן</option>
+                <option value="פורד">פורד</option>
+                <option value="פיאט">פיאט</option>
+                <option value="פיג'ו">פיג'ו</option>
+                <option value="קיה">קיה</option>
+                <option value="קרייזלר">קרייזלר</option>
+                <option value="רנו">רנו</option>
+                <option value="שברולט">שברולט</option>
+                </select><br><br>
+
             <label for="gear">Gear:</label>
-            <input type="text" id="gear" name="gear" required><br><br>
+            <select id="gear" name="gear" required>
+                <option value="לא מוגדר">לא מוגדר</option>
+                <option value="אוטומטית">אוטומטית</option>
+                <option value="טיפטרוניק">טיפטרוניק</option>
+                <option value="ידנית">ידנית</option>
+                <option value="רובוטית">רובוטית</option>
+             </select><br><br>
+
             <label for="engine_type">Engine Type:</label>
-            <input type="text" id="engine_type" name="engine_type" required><br><br>
+            <input type="text" id="engine_type" name="engine_type" oninput="validateHebrewInput(this)" required><br><br>
+
             <label for="curr_ownership">Current Ownership:</label>
-            <input type="text" id="curr_ownership" name="curr_ownership" required><br><br>
+            <select id="curr_ownership" name="curr_ownership" required>
+                <option value="השכרה">השכרה</option>
+                <option value="ליסינג">ליסינג</option>
+                <option value="חברה">חברה</option>
+                <option value="פרטית">פרטית</option>
+                <option value="אחר">אחר</option>
+            </select><br><br>
+
             <label for="capacity_engine">Capacity Engine:</label>
-            <input type="text" id="capacity_engine" name="capacity_engine" required><br><br>
+            <input type="number" id="capacity_engine" name="capacity_engine" min="800" required><br><br>
+
             <label for="color">Color:</label>
-            <input type="text" id="color" name="color" required><br><br>
+            <input type="text" id="color" name="color" oninput="validateHebrewInput(this)" required><br><br>
+
             <button type="submit" class="btn btn-primary px-5">Evaluate Price</button>    
         </form>
         <h3 class="result">{{ prediction_text }}</h3>
     </div>
+    <script>
+        function validateHebrewInput(input) {
+            const hebrewRegex = /^[\u0590-\u05FF\s]*$/; // Allows only Hebrew characters and spaces
+            if (!hebrewRegex.test(input.value)) {
+                alert('This field can only contain Hebrew characters and spaces.');
+                input.value = input.value.replace(/[^\u0590-\u05FF\s]/g, ''); // Remove invalid characters
+            }
+        }
+    </script>
 </body>
 </html>
-
 
